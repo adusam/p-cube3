@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+app/cache/*
+app/config/eccube/*
+app/log/*
+html/upload/temp_image/*

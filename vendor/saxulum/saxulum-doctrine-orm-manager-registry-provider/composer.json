@@ -1,0 +1,37 @@
+{
+    "name": "saxulum/saxulum-doctrine-orm-manager-registry-provider",
+    "description": "Saxulum Doctrine ORM Manager Registry Provider",
+    "keywords": ["pimple", "cilex", "silex", "doctrine", "orm", "registrymanager"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominik Zogg",
+            "email": "dominik.zogg@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3,<8.0",
+        "pimple/pimple": "~1.0",
+        "dflydev/doctrine-orm-service-provider": "~1.0.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "saxulum/saxulum-console": "~2.2",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.2",
+        "silex/silex": "~1.2",
+        "symfony/doctrine-bridge": "~2.2|~3.0",
+        "symfony/form": "~2.2|~3.0",
+        "symfony/validator": "~2.2|~3.0"
+    },
+    "suggest": {
+        "saxulum/saxulum-console": "~2.2",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.2",
+        "silex/silex": "~1.2",
+        "symfony/doctrine-bridge": "~2.2|~3.0",
+        "symfony/form": "~2.2|~3.0",
+        "symfony/validator": "~2.2|~3.0"
+    },
+    "autoload": {
+        "psr-4": { "Saxulum\\DoctrineOrmManagerRegistry\\": "src/" }
+    }
+}
