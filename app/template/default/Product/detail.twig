@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             document.form1, {{ form.classcategory_id2.vars.value|json_encode|raw }}
     );
     {% elseif form.classcategory_id1 is defined %}
-          eccube.checkStock(document.form1, {{ Product.id }}, {{ form.classcategory_id1.vars.value|json_encode|raw }}, null);
+            eccube.checkStock(document.form1, {{ Product.id }}, {{ form.classcategory_id1.vars.value|json_encode|raw }}, null);
     {% endif %}
 </script>
 
@@ -141,30 +141,6 @@ $(function(){
                         <!--▲商品タグ-->
                     {% endif %}
 
-                    <!--★通常価格★-->
-                    {% if Product.hasProductClass -%}
-                        {% if Product.getPrice01Min is not null and Product.getPrice01IncTaxMin == Product.getPrice01IncTaxMax %}
-                        <p id="detail_description_box__class_normal_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }}</span> <span class="small">税込</span></p>
-                        {% elseif Product.getPrice01Min is not null and Product.getPrice01Max is not null %}
-                        <p id="detail_description_box__class_normal_range_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }} ～ {{ Product.getPrice01IncTaxMax|price }}</span> <span class="small">税込</span></p>
-                        {% endif %}
-                    {% else -%}
-                        {% if Product.getPrice01Max is not null %}
-                        <p id="detail_description_box__normal_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }}</span> <span class="small">税込</span></p>
-                        {% endif %}
-                    {% endif -%}
-
-                    <!--★販売価格★-->
-                    {% if Product.hasProductClass -%}
-                        {% if Product.getPrice02IncTaxMin == Product.getPrice02IncTaxMax %}
-                        <p id="detail_description_box__class_sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }}</span> <span class="small">税込</span></p>
-                        {% else %}
-                        <p id="detail_description_box__class_range_sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }} ～ {{  Product.getPrice02IncTaxMax|price }}</span> <span class="small">税込</span></p>
-                        {% endif %}
-                    {% else -%}
-                        <p id="detail_description_box__sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }}</span> <span class="small">税込</span></p>
-                    {% endif -%}
-
                     <!--▼商品コード-->
                     <p id="detail_description_box__item_range_code" class="item_code">商品コード： <span id="item_code_default">
                         {{ Product.code_min }}
@@ -175,7 +151,7 @@ $(function(){
                     <!-- ▼関連カテゴリ▼ -->
                     <div id="relative_category_box" class="relative_cat">
                         <p>関連カテゴリ</p>
-                          {% for ProductCategory in Product.ProductCategories %}
+                            {% for ProductCategory in Product.ProductCategories %}
                         <ol id="relative_category_box__relative_category--{{ ProductCategory.product_id }}_{{ loop.index }}">
                             {% for Category in ProductCategory.Category.path %}
                             <li><a id="relative_category_box__relative_category--{{ ProductCategory.product_id }}_{{ loop.parent.loop.index }}_{{ Category.id }}" href="{{ url('product_list') }}?category_id={{ Category.id }}">{{ Category.name }}</a></li>
@@ -204,9 +180,33 @@ $(function(){
                                             {{ form_widget(form.classcategory_id2) }}
                                             {{ form_errors(form.classcategory_id2) }}
                                         </li>
-                                     {% endif %}
+                                    {% endif %}
                                 </ul>
                                 {% endif %}
+
+                                <!--★通常価格★-->
+                                {% if Product.hasProductClass -%}
+                                    {% if Product.getPrice01Min is not null and Product.getPrice01IncTaxMin == Product.getPrice01IncTaxMax %}
+                                    <p id="detail_description_box__class_normal_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }}</span> <span class="small">税込</span></p>
+                                    {% elseif Product.getPrice01Min is not null and Product.getPrice01Max is not null %}
+                                    <p id="detail_description_box__class_normal_range_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }} ～ {{ Product.getPrice01IncTaxMax|price }}</span> <span class="small">税込</span></p>
+                                    {% endif %}
+                                {% else -%}
+                                    {% if Product.getPrice01Max is not null %}
+                                    <p id="detail_description_box__normal_price" class="normal_price"> 通常価格：<span class="price01_default">{{ Product.getPrice01IncTaxMin|price }}</span> <span class="small">税込</span></p>
+                                    {% endif %}
+                                {% endif -%}
+
+                                <!--★販売価格★-->
+                                {% if Product.hasProductClass -%}
+                                    {% if Product.getPrice02IncTaxMin == Product.getPrice02IncTaxMax %}
+                                    <p id="detail_description_box__class_sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }}</span> <span class="small">税込</span></p>
+                                    {% else %}
+                                    <p id="detail_description_box__class_range_sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }} ～ {{  Product.getPrice02IncTaxMax|price }}</span> <span class="small">税込</span></p>
+                                    {% endif %}
+                                {% else -%}
+                                    <p id="detail_description_box__sale_price" class="sale_price text-primary"> <span class="price02_default">{{ Product.getPrice02IncTaxMin|price }}</span> <span class="small">税込</span></p>
+                                {% endif -%}
 
                                 {# 数量 #}
                                 <dl id="detail_cart_box__cart_quantity" class="quantity">
