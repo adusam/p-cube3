@@ -155,7 +155,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     {% endif %}
                 {% endfor %}
                 <input id="top_box__hidden_mode" type="hidden" name="mode" value="confirm">
-                <p id="top_box__agreement" class="form_terms_link"><a href="{{ url('help_agreement') }}" target="_blank">利用規約</a>に同意してお進みください
+                <p id="top_box__agreement" class="form_terms_link">
+                    <input type="checkbox" name="tos" required>
+                    <a href="{{ url('help_agreement') }}" target="_blank">利用規約</a>に同意してお進みください
                 </p>
 
                 <div id="top_box__footer" class="row no-padding">
